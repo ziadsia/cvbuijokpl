@@ -3,156 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة تحكم المدرس (Admin)</title>
+    <title>لوحة تحكم المدرس</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #2563eb; --secondary: #0f172a; --bg: #f1f5f9; --card: #ffffff; --success: #16a34a; --danger: #dc2626; }
         * { box-sizing: border-box; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
-        body { background: var(--bg); color: #1e293b; animation: fadeIn 0.4s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        nav { background: var(--secondary); color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        body { background: var(--bg); color: #1e293b; }
+        nav { background: var(--secondary); color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; }
         .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
         .card { background: var(--card); padding: 25px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); margin-bottom: 25px; border: 1px solid #e2e8f0; }
         h2 { margin-bottom: 15px; color: var(--secondary); font-size: 1.25rem; }
-        .controls { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
-        input, select { padding: 10px 15px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95://rem; outline: none; transition: 0.2s; }
-        input:focus, select:focus { border-color: var(--primary); }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem; outline: none; }
         button { padding: 10px 18px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; color: white; transition: 0.2s; }
-        button:hover { opacity: 0.9; transform: translateY(-1px); }
+        button:hover { opacity: 0.9; }
         .btn-blue { background: var(--primary); }
         .btn-green { background: var(--success); }
-        .btn-red { background: var(--danger); padding: 6px 12px; font-size: 0.85rem; }
+        .btn-red { background: var(--danger); padding: 5px 10px; font-size: 0.8rem; }
         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { padding: 12px; text-align: right; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; }
-        th { background: #f8fafc; font-weight: 700; }
-        .badge-used { background: #fee2e2; color: #991b1b; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; }
-        .badge-free { background: #dcfce7; color: #166534; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; }
-        .code-box { font-family: monospace; font-size: 0.95rem; font-weight: bold; background: #f8fafc; padding: 4px 8px; border-radius: 4px; border: 1px dashed #94a3b8; color: var(--primary); }
+        th, td { padding: 10px; text-align: right; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; }
+        th { background: #f8fafc; }
+        .code-box { font-family: monospace; font-weight: bold; background: #f8fafc; padding: 3px 6px; border: 1px dashed #94a3b8; border-radius: 4px; color: var(--primary); }
     </style>
 </head>
 <body>
 
 <nav>
     <div style="font-size: 1.3rem; font-weight: 900; color: #38bdf8;">⚙️ لوحة تحكم المدرس</div>
-    <a href="index.html" style="color: white; text-decoration: none; background: #334155; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.9rem;">العودة للمنصة الرئيسية ↗</a>
+    <a href="index.html" style="color: white; text-decoration: none; background: #334155; padding: 8px 16px; border-radius: 6px; font-size: 0.9rem;">الذهاب للمنصة ↗</a>
 </nav>
 
 <div class="container">
-    <!-- 1. توليد الأكواد -->
+    
+    <!-- 1. إضافة محاضرة جديدة -->
     <div class="card">
-        <h2>🎟️ توليد أكواد اشتراك جديدة (للبيع للطلاب أونلاين أو في السنتر)</h2>
-        <div class="controls">
-            <input type="number" id="codeCount" value="5" min="1" max="100" placeholder="عدد الأكواد">
-            <select id="codeTarget">
-                <option value="2">يفتح المحاضرة الثانية</option>
-                <option value="3">يفتح المحاضرة الثالثة</option>
-                <option value="all">يفتح جميع المحاضرات (باقة كاملة)</option>
+        <h2>➕ إضافة محاضرة أو فيديو جديد</h2>
+        <div class="form-group">
+            <label>عنوان المحاضرة</label>
+            <input type="text" id="lessonTitle" placeholder="مثال: المحاضرة الرابعة: قانون أوم">
+        </div>
+        <div class="form-group">
+            <label>وصف مختصر</label>
+            <input type="text" id="lessonDesc" placeholder="شرح تفصيلي وحل أمثلة">
+        </div>
+        <div class="form-group">
+            <label>رابط فيديو يوتيوب</label>
+            <input type="text" id="lessonUrl" placeholder="https://www.youtube.com/watch?v=xxxxxx">
+        </div>
+        <div class="form-group">
+            <label>نوع المحتوى</label>
+            <select id="lessonType">
+                <option value="paid">مدفوعة (تتطلب كود تفعيل)</option>
+                <option value="free">مجانية للجميع</option>
             </select>
-            <button class="btn-green" onclick="generateCodes()">+ توليد الأكواد الآن</button>
-            <button class="btn-blue" onclick="copyUnusedCodes()">📋 نسخ الأكواد غير المستخدمة</button>
         </div>
-        <div style="overflow-x: auto;">
-            <table>
-                <thead>
-                    <tr>
-                        <th>الكود</th>
-                        <th>الصلاحية</th>
-                        <th>الحالة</th>
-                        <th>مستخدم بواسطة (رقم الهاتف)</th>
-                    </tr>
-                </thead>
-                <tbody id="codesTable"></tbody>
-            </table>
+        <div class="form-group">
+            <label>هل يتطلب اجتياز امتحان سابق لفتحها؟ (اختياري)</label>
+            <select id="lessonQuizId">
+                <option value="">بدون امتحان شرطي</option>
+            </select>
         </div>
+        <button class="btn-green" onclick="addLesson()">حفظ ونشر المحاضرة</button>
     </div>
 
-    <!-- 2. إدارة الطلاب وتقييد الأجهزة -->
+    <!-- 2. إضافة امتحان جديد -->
     <div class="card">
-        <h2>👨‍🎓 إدارة الطلاب وفك حظر الأجهزة (Device Reset)</h2>
-        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 15px;">إذا غيّر الطالب هاتفه أو متصفحه، اضغط على زر "فك قفل الجهاز" لتمكينه من الدخول من جهازه الجديد.</p>
-        <div style="overflow-x: auto;">
-            <table>
-                <thead>
-                    <tr>
-                        <th>اسم الطالب</th>
-                        <th>رقم الهاتف</th>
-                        <th>معرف الجهاز الحالي</th>
-                        <th>المحاضرات المفتوحة</th>
-                        <th>إجراء</th>
-                    </tr>
-                </thead>
-                <tbody id="usersTable"></tbody>
-            </table>
+        <h2>📝 إضافة امتحان تقييم جديد</h2>
+        <div class="form-group">
+            <label>عنوان الامتحان</label>
+            <input type="text" id="quizTitle" placeholder="امتحان الفصل الأول">
         </div>
+        <div class="form-group">
+            <label>نسبة النجاح المطلوبة (%)</label>
+            <input type="number" id="quizPass" value="50" min="10" max="100">
+        </div>
+        <div class="form-group">
+            <label>السؤال الأول</label>
+            <input type="text" id="qText" placeholder="نص السؤال هنا">
+        </div>
+        <div class="form-group">
+            <label>الاختيارات (افصل بينها بفاصلة ,)</label>
+            <input type="text" id="qOptions" placeholder="المتر, القدم, البوصة, الياردة">
+        </div>
+        <div class="form-group">
+            <label>رقم الإجابة الصحيحة (0 للأول، 1 للثاني، وهكذا)</label>
+            <input type="number" id="qAnswer" value="0" min="0" max="3">
+        </div>
+        <button class="btn-blue" onclick="addQuiz()">حفظ وإنشاء الامتحان</button>
     </div>
+
+    <!-- 3. توليد الأكواد -->
+    <div class="card">
+        <h2>🎟️ توليد أكواد التفعيل</h2>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
+            <input type="number" id="codeCount" value="5" min="1" style="width: 100px;" placeholder="العدد">
+            <select id="codeTarget" style="flex: 1;">
+                <option value="all">الباقة الكاملة لكل المحاضرات</option>
+            </select>
+            <button class="btn-green" onclick="generateCodes()">توليد الأكواد</button>
+        </div>
+        <table>
+            <thead><tr><th>الكود</th><th>الصلاحية</th><th>الحالة</th><th>مستخدم بواسطة</th><th>إجراء</th></tr></thead>
+            <tbody id="codesTable"></tbody>
+        </table>
+    </div>
+
+    <!-- 4. إدارة الطلاب والأجهزة -->
+    <div class="card">
+        <h2>👨‍🎓 إدارة الطلاب المسجلين وفك الأجهزة</h2>
+        <table>
+            <thead><tr><th>اسم الطالب</th><th>الهاتف</th><th>كلمة المرور</th><th>معرف الجهاز</th><th>إجراء</th></tr></thead>
+            <tbody id="usersTable"></tbody>
+        </table>
+    </div>
+
 </div>
 
 <script src="data.js"></script>
 <script>
     function loadAdminData() {
-        const codes = JSON.parse(localStorage.getItem('platform_codes')) || DEFAULT_CODES;
-        const users = JSON.parse(localStorage.getItem('platform_users')) || {};
+        let lessons = JSON.parse(localStorage.getItem('platform_lessons')) || DEFAULT_LESSONS;
+        let quizzes = JSON.parse(localStorage.getItem('platform_quizzes')) || DEFAULT_QUIZZES;
+        let codes = JSON.parse(localStorage.getItem('platform_codes')) || DEFAULT_CODES;
+        let users = JSON.parse(localStorage.getItem('platform_users')) || {};
 
-        const codesTbody = document.getElementById('codesTable');
+        // تحديث قائمة الامتحانات في اختيار المحاضرات
+        let quizSelect = document.getElementById('lessonQuizId');
+        quizSelect.innerHTML = '<option value="">بدون امتحان شرطي</option>';
+        quizzes.forEach(q => {
+            quizSelect.innerHTML += `<option value="${q.id}">${q.title} (ID: ${q.id})</option>`;
+        });
+
+        // تحديث target الأكواد بناء على المحاضرات الموجودة
+        let targetSelect = document.getElementById('codeTarget');
+        targetSelect.innerHTML = '<option value="all">الباقة الكاملة لجميع المحاضرات</option>';
+        lessons.forEach(l => {
+            targetSelect.innerHTML += `<option value="${l.id}">المحاضرة: ${l.title}</option>`;
+        });
+
+        // عرض الأكواد
+        let codesTbody = document.getElementById('codesTable');
         codesTbody.innerHTML = '';
-        codes.slice().reverse().forEach(c => {
+        codes.slice().reverse().forEach((c, idx) => {
             codesTbody.innerHTML += `
                 <tr>
                     <td><span class="code-box">${c.code}</span></td>
                     <td>${c.label}</td>
-                    <td>${c.used ? '<span class="badge-used">مُستخدم</span>' : '<span class="badge-free">متاح للبيع</span>'}</td>
+                    <td>${c.used ? '<span style="color:red">مستخدم</span>' : '<span style="color:green">متاح</span>'}</td>
                     <td>${c.usedBy || '-'}</td>
+                    <td><button class="btn-red" onclick="deleteCode(${codes.length - 1 - idx})">حذف</button></td>
                 </tr>
             `;
         });
 
-        const usersTbody = document.getElementById('usersTable');
+        // عرض الطلاب
+        let usersTbody = document.getElementById('usersTable');
         usersTbody.innerHTML = '';
-        if (Object.keys(users).length === 0) {
-            usersTbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#64748b;">لا يوجد طلاب مسجلين حتى الآن</td></tr>`;
-            return;
-        }
-
         Object.values(users).forEach(u => {
             usersTbody.innerHTML += `
                 <tr>
                     <td><b>${u.name}</b></td>
                     <td>${u.phone}</td>
-                    <td>${u.deviceId ? `<span class="code-box">${u.deviceId}</span>` : '<span style="color:green; font-weight:bold;">غير مقيد</span>'}</td>
-                    <td>${u.unlockedLessons.join(', ')}</td>
-                    <td>
-                        <button class="btn-red" onclick="resetDevice('${u.phone}')">🔄 فك قفل الجهاز</button>
-                    </td>
+                    <td><code>${u.pass}</code></td>
+                    <td>${u.deviceId || 'غير مقيد'}</td>
+                    <td><button class="btn-red" onclick="resetDevice('${u.phone}')">فك الجهاز</button></td>
                 </tr>
             `;
         });
     }
 
-    function generateCodes() {
-        const count = parseInt(document.getElementById('codeCount').value) || 5;
-        const target = document.getElementById('codeTarget').value;
-        let codes = JSON.parse(localStorage.getItem('platform_codes')) || DEFAULT_CODES;
+    function addLesson() {
+        let title = document.getElementById('lessonTitle').value.trim();
+        let desc = document.getElementById('lessonDesc').value.trim();
+        let url = document.getElementById('lessonUrl').value.trim();
+        let type = document.getElementById('lessonType').value;
+        let quizId = document.getElementById('lessonQuizId').value;
 
-        let unlocks = [];
-        let label = '';
-        if (target === 'all') {
-            unlocks = [1, 2, 3];
+        if(!title || !url) { alert('يرجى كتابة العنوان ورابط الفيديو'); return; }
+
+        let lessons = JSON.parse(localStorage.getItem('platform_lessons')) || DEFAULT_LESSONS;
+        let newId = lessons.length > 0 ? lessons[lessons.length - 1].id + 1 : 1;
+
+        lessons.push({
+            id: newId,
+            title: title,
+            description: desc || 'شرح تفصيلي للمنهج',
+            videoUrl: url,
+            isFree: type === 'free',
+            requiredQuizId: quizId ? parseInt(quizId) : null
+        });
+
+        localStorage.setItem('platform_lessons', JSON.stringify(lessons));
+        alert('تم إضافة المحاضرة ونشرها بنجاح!');
+        location.reload();
+    }
+
+    function addQuiz() {
+        let title = document.getElementById('quizTitle').value.trim();
+        let pass = parseInt(document.getElementById('quizPass').value) || 50;
+        let qText = document.getElementById('qText').value.trim();
+        let options = document.getElementById('qOptions').value.split(',').map(o => o.trim());
+        let answer = parseInt(document.getElementById('qAnswer').value);
+
+        if(!title || !qText || options.length < 2) { alert('يرجى ملء تفاصيل السؤال والاختيارات'); return; }
+
+        let quizzes = JSON.parse(localStorage.getItem('platform_quizzes')) || DEFAULT_QUIZZES;
+        let newId = quizzes.length > 0 ? quizzes[quizzes.length - 1].id + 1 : 101;
+
+        quizzes.push({
+            id: newId,
+            title: title,
+            passScore: pass,
+            questions: [{ q: qText, options: options, answer: answer }]
+        });
+
+        localStorage.setItem('platform_quizzes', JSON.stringify(quizzes));
+        alert('تم إنشاء الامتحان بنجاح وأصبح متاحاً للربط بالمحاضرات!');
+        location.reload();
+    }
+
+    function generateCodes() {
+        let count = parseInt(document.getElementById('codeCount').value) || 5;
+        let target = document.getElementById('codeTarget').value;
+        let codes = JSON.parse(localStorage.getItem('platform_codes')) || DEFAULT_CODES;
+        let lessons = JSON.parse(localStorage.getItem('platform_lessons')) || DEFAULT_LESSONS;
+
+        let unlocks = [], label = '';
+        if(target === 'all') {
+            unlocks = lessons.map(l => l.id);
             label = 'الباقة الكاملة';
         } else {
+            let les = lessons.find(l => l.id == target);
             unlocks = [parseInt(target)];
-            label = `المحاضرة رقم ${target}`;
+            label = les ? les.title : 'محاضرة';
         }
 
-        for (let i = 0; i < count; i++) {
-            const rand = Math.random().toString(36).substring(2, 8).toUpperCase();
-            codes.push({
-                code: `VIP-${rand}`,
-                unlocks: unlocks,
-                label: label,
-                used: false,
-                usedBy: null
-            });
+        for(let i=0; i<count; i++) {
+            let rand = Math.random().toString(36).substring(2, 8).toUpperCase();
+            codes.push({ code: `VIP-${rand}`, unlocks: unlocks, label: label, used: false, usedBy: null });
         }
 
         localStorage.setItem('platform_codes', JSON.stringify(codes));
@@ -160,25 +249,21 @@
         alert(`تم توليد ${count} كود بنجاح!`);
     }
 
+    function deleteCode(idx) {
+        let codes = JSON.parse(localStorage.getItem('platform_codes')) || DEFAULT_CODES;
+        codes.splice(idx, 1);
+        localStorage.setItem('platform_codes', JSON.stringify(codes));
+        loadAdminData();
+    }
+
     function resetDevice(phone) {
         let users = JSON.parse(localStorage.getItem('platform_users')) || {};
-        if (users[phone]) {
+        if(users[phone]) {
             users[phone].deviceId = null;
             localStorage.setItem('platform_users', JSON.stringify(users));
             loadAdminData();
-            alert('تم فك قفل الجهاز بنجاح! يمكن للطالب الآن تسجيل الدخول من جهازه الجديد.');
+            alert('تم فك قفل الجهاز للطالب بنجاح.');
         }
-    }
-
-    function copyUnusedCodes() {
-        const codes = JSON.parse(localStorage.getItem('platform_codes')) || DEFAULT_CODES;
-        const unused = codes.filter(c => !c.used).map(c => `${c.code} (${c.label})`).join('\n');
-        if (!unused) {
-            alert('لا توجد أكواد متاحة حالياً!');
-            return;
-        }
-        navigator.clipboard.writeText(unused);
-        alert('تم نسخ جميع الأكواد المتاحة للحافظة بنجاح!');
     }
 
     window.onload = loadAdminData;
