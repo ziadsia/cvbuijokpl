@@ -19,20 +19,26 @@
             --warning: #d97706;
         }
         * { box-sizing: border-box; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
-        body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
+        body { background-color: var(--bg); color: var(--text); line-height: 1.6; animation: fadeIn 0.5s ease-in-out; }
         
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Navbar */
         nav {
             background: var(--secondary); color: white; padding: 15px 5%;
             display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
-        .logo { font-size: 1.4rem; font-weight: 900; color: #38bdf8; }
+        .logo { font-size: 1.4rem; font-weight: 900; color: #38bdf8; letter-spacing: 0.5px; }
         .nav-info { display: flex; align-items: center; gap: 15px; font-size: 0.9rem; }
         .btn-logout {
             background: var(--danger); color: white; border: none; padding: 6px 14px;
-            border-radius: 6px; cursor: pointer; font-weight: 600;
+            border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.2s;
         }
+        .btn-logout:hover { opacity: 0.9; transform: scale(1.05); }
 
         /* Container */
         .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
@@ -41,7 +47,7 @@
         .auth-box {
             max-width: 420px; margin: 60px auto; background: var(--card);
             padding: 35px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-            text-align: center;
+            text-align: center; border: 1px solid #e2e8f0;
         }
         .auth-box h2 { margin-bottom: 10px; color: var(--secondary); }
         .auth-box p { color: var(--muted); font-size: 0.9rem; margin-bottom: 25px; }
@@ -51,29 +57,32 @@
             width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px;
             font-size: 1rem; outline: none; transition: 0.2s;
         }
-        .form-group input:focus { border-color: var(--primary); }
+        .form-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
         .btn-primary {
             width: 100%; background: var(--primary); color: white; border: none;
             padding: 12px; border-radius: 8px; font-size: 1rem; font-weight: 700;
             cursor: pointer; transition: 0.2s;
         }
-        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
 
         /* Dashboard Header & Activation */
         .top-bar {
             background: var(--card); padding: 25px; border-radius: 16px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04); margin-bottom: 30px;
             display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;
+            border: 1px solid #e2e8f0;
         }
         .code-form { display: flex; gap: 10px; flex-wrap: wrap; }
         .code-form input {
             padding: 10px 15px; border: 2px solid #cbd5e1; border-radius: 8px;
-            font-size: 1rem; width: 220px; text-transform: uppercase; font-weight: bold;
+            font-size: 1rem; width: 220px; text-transform: uppercase; font-weight: bold; outline: none; transition: 0.2s;
         }
+        .code-form input:focus { border-color: var(--success); }
         .btn-activate {
             background: var(--success); color: white; border: none; padding: 10px 20px;
-            border-radius: 8px; font-weight: 700; cursor: pointer;
+            border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.2s;
         }
+        .btn-activate:hover { opacity: 0.9; transform: translateY(-2px); }
 
         /* Lessons Grid */
         .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 20px; color: var(--secondary); }
@@ -84,12 +93,12 @@
             background: var(--card); border-radius: 14px; overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;
             display: flex; flex-direction: column; justify-content: space-between;
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
         }
-        .lesson-card:hover { transform: translateY(-4px); }
+        .lesson-card:hover { transform: translateY(-6px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
         .card-header { padding: 20px; background: linear-gradient(135deg, #1e293b, #334155); color: white; position: relative; }
         .badge {
-            display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem;
+            display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem;
             font-weight: 700; margin-bottom: 8px;
         }
         .badge-free { background: #22c55e; color: white; }
@@ -99,32 +108,40 @@
         .card-body p { color: var(--muted); font-size: 0.9rem; margin-bottom: 15px; }
         .card-footer { padding: 15px 20px; background: #f1f5f9; border-top: 1px solid #e2e8f0; }
         .btn-watch {
-            width: 100%; padding: 10px; border: none; border-radius: 8px; font-weight: 700;
-            cursor: pointer; background: var(--primary); color: white;
+            width: 100%; padding: 11px; border: none; border-radius: 8px; font-weight: 700;
+            cursor: pointer; background: var(--primary); color: white; transition: 0.2s;
         }
+        .btn-watch:hover { background: var(--primary-dark); }
         .btn-quiz {
-            width: 100%; padding: 10px; border: none; border-radius: 8px; font-weight: 700;
-            cursor: pointer; background: var(--warning); color: white;
+            width: 100%; padding: 11px; border: none; border-radius: 8px; font-weight: 700;
+            cursor: pointer; background: var(--warning); color: white; transition: 0.2s;
         }
+        .btn-quiz:hover { opacity: 0.9; }
         .btn-disabled {
-            width: 100%; padding: 10px; border: none; border-radius: 8px; font-weight: 700;
+            width: 100%; padding: 11px; border: none; border-radius: 8px; font-weight: 700;
             background: #cbd5e1; color: #475569; cursor: not-allowed;
         }
 
         /* Modal */
         .modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.8); z-index: 1000; justify-content: center; align-items: center; padding: 20px;
+            background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; padding: 20px;
         }
         .modal-content {
             background: white; width: 100%; max-width: 750px; border-radius: 16px;
             padding: 25px; position: relative; max-height: 90vh; overflow-y: auto;
+            animation: scaleUp 0.3s ease-in-out;
+        }
+        @keyframes scaleUp {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
         .close-modal {
             position: absolute; top: 15px; left: 20px; font-size: 1.5rem; cursor: pointer;
             background: #f1f5f9; width: 35px; height: 35px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; border: none;
+            display: flex; align-items: center; justify-content: center; border: none; transition: 0.2s;
         }
+        .close-modal:hover { background: #fee2e2; color: var(--danger); }
         .video-wrapper {
             position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
             border-radius: 12px; margin-top: 15px; background: #000;
@@ -134,11 +151,11 @@
         }
         .quiz-question { margin-bottom: 20px; padding: 15px; background: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0; }
         .quiz-question h4 { margin-bottom: 10px; }
-        .quiz-option { display: block; margin-bottom: 8px; cursor: pointer; }
+        .quiz-option { display: block; margin-bottom: 8px; cursor: pointer; font-size: 0.95rem; }
         .alert { padding: 12px 15px; border-radius: 8px; margin-bottom: 15px; font-weight: 600; font-size: 0.9rem; }
         .alert-danger { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
         .alert-success { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
-        .device-tag { font-size: 0.75rem; color: var(--muted); background: #e2e8f0; padding: 3px 8px; border-radius: 4px; }
+        .device-tag { font-size: 0.75rem; color: #334155; background: #e2e8f0; padding: 4px 10px; border-radius: 6px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -146,7 +163,7 @@
 <nav>
     <div class="logo">🎓 منصة المستر التعليمية</div>
     <div class="nav-info" id="navInfo" style="display: none;">
-        <span id="studentNameDisplay"></span>
+        <span id="studentNameDisplay" style="font-weight: 700;"></span>
         <span class="device-tag" id="deviceIdDisplay"></span>
         <button class="btn-logout" onclick="logout()">خروج</button>
     </div>
@@ -167,7 +184,7 @@
             <input type="tel" id="studentPhone" placeholder="010xxxxxxxx">
         </div>
         <button class="btn-primary" onclick="login()">دخول للمنصة</button>
-        <p style="margin-top: 15px; font-size: 0.8rem;">* للدخول كمدرس/أدمن افتح ملف <b>admin.html</b></p>
+        <p style="margin-top: 15px; font-size: 0.8rem; color: var(--muted);">* للدخول لوحة التحكم افتح ملف <b>admin.html</b></p>
     </div>
 </div>
 
@@ -175,7 +192,7 @@
 <div class="container" id="dashboardSection" style="display: none;">
     <div class="top-bar">
         <div>
-            <h2 style="font-size: 1.3rem;">أهلاً بك يا بطل 👋</h2>
+            <h2 style="font-size: 1.3rem; color: var(--secondary);">أهلاً بك يا بطل 👋</h2>
             <p style="color: var(--muted); font-size: 0.9rem;">معاك كود سنتر أو فودافون كاش؟ فعّله هنا لفتح المحاضرات المغلقة</p>
         </div>
         <div>
@@ -201,7 +218,6 @@
 
 <script src="data.js"></script>
 <script>
-    // 1. إدارة معرف الجهاز (Device Fingerprinting / Lock)
     function getOrCreateDeviceId() {
         let devId = localStorage.getItem('platform_device_id');
         if (!devId) {
@@ -213,7 +229,6 @@
 
     const currentDeviceId = getOrCreateDeviceId();
 
-    // 2. تسجيل الدخول والتحقق من الجهاز
     function login() {
         const name = document.getElementById('studentName').value.trim();
         const phone = document.getElementById('studentPhone').value.trim();
@@ -227,23 +242,20 @@
         let users = JSON.parse(localStorage.getItem('platform_users')) || {};
 
         if (users[phone]) {
-            // التحقق من تقييد الجهاز
             if (users[phone].deviceId && users[phone].deviceId !== currentDeviceId) {
                 alertBox.innerHTML = `<div class="alert alert-danger">⛔ عفواً! هذا الحساب مسجل على جهاز آخر (${users[phone].deviceId}). تواصل مع الدعم الفني لفك القفل.</div>`;
                 return;
             }
-            // إذا تم عمل Reset للجهاز من الأدمن، اربطه بالجهاز الحالي
             if (!users[phone].deviceId) {
                 users[phone].deviceId = currentDeviceId;
                 localStorage.setItem('platform_users', JSON.stringify(users));
             }
         } else {
-            // مستخدم جديد
             users[phone] = {
                 name: name,
                 phone: phone,
                 deviceId: currentDeviceId,
-                unlockedLessons: [1], // الحصة الأولى مفتوحة مجاناً
+                unlockedLessons: [1],
                 passedQuizzes: []
             };
             localStorage.setItem('platform_users', JSON.stringify(users));
@@ -258,7 +270,6 @@
         location.reload();
     }
 
-    // 3. تفعيل الأكواد
     function redeemCode() {
         const codeInput = document.getElementById('voucherInput').value.trim().toUpperCase();
         const alertBox = document.getElementById('codeAlert');
@@ -281,12 +292,10 @@
             return;
         }
 
-        // تفعيل الكود
         foundCode.used = true;
         foundCode.usedBy = phone;
         localStorage.setItem('platform_codes', JSON.stringify(codes));
 
-        // فتح المحاضرات المرتبطة بالكود
         foundCode.unlocks.forEach(lessonId => {
             if (!user.unlockedLessons.includes(lessonId)) {
                 user.unlockedLessons.push(lessonId);
@@ -300,7 +309,6 @@
         renderLessons();
     }
 
-    // 4. عرض لوحة الطالب والمحاضرات
     function renderDashboard() {
         const phone = localStorage.getItem('current_student_phone');
         if (!phone) return;
@@ -313,7 +321,7 @@
         document.getElementById('dashboardSection').style.display = 'block';
         document.getElementById('navInfo').style.display = 'flex';
         document.getElementById('studentNameDisplay').innerText = `الطالب: ${user.name}`;
-        document.getElementById('deviceIdDisplay').innerText = `جهازك: ${currentDeviceId}`;
+        document.getElementById('deviceIdDisplay').innerText = `معرف جهازك: ${currentDeviceId}`;
 
         renderLessons();
     }
@@ -340,7 +348,7 @@
                 badgeHtml = '<span class="badge badge-locked">📝 يتطلب اجتياز امتحان سابق</span>';
                 buttonHtml = `<button class="btn-quiz" onclick="openQuiz(${lesson.requiredQuizId}, ${lesson.id})">ابدأ الامتحان لفتح المحاضرة</button>`;
             } else {
-                badgeHtml = lesson.isFree ? '<span class="badge badge-free">مجاني</span>' : '<span class="badge badge-free">✅ مُفعّل</span>';
+                badgeHtml = lesson.isFree ? '<span class="badge badge-free">مجاني</span>' : '<span class="badge badge-free">✅ مُفعّل بنجاح</span>';
                 buttonHtml = `<button class="btn-watch" onclick="watchLesson(${lesson.id})">▶️ مشاهدة المحاضرة الآن</button>`;
             }
 
@@ -349,7 +357,7 @@
                     <div>
                         <div class="card-header">
                             ${badgeHtml}
-                            <h3>${lesson.title}</h3>
+                            <h3 style="margin-top: 5px;">${lesson.title}</h3>
                         </div>
                         <div class="card-body">
                             <p>${lesson.description}</p>
@@ -363,15 +371,14 @@
         });
     }
 
-    // 5. تشغيل الفيديو
     function watchLesson(lessonId) {
         const lessons = JSON.parse(localStorage.getItem('platform_lessons')) || DEFAULT_LESSONS;
         const lesson = lessons.find(l => l.id === lessonId);
         const modalBody = document.getElementById('modalBody');
 
         modalBody.innerHTML = `
-            <h3>${lesson.title}</h3>
-            <p style="color:var(--muted); margin-bottom:10px;">${lesson.description}</p>
+            <h3 style="color:var(--secondary);">${lesson.title}</h3>
+            <p style="color:var(--muted); margin-bottom:10px; font-size:0.9rem;">${lesson.description}</p>
             <div class="video-wrapper">
                 <iframe src="${lesson.videoUrl}" allowfullscreen></iframe>
             </div>
@@ -379,14 +386,13 @@
         document.getElementById('contentModal').style.display = 'flex';
     }
 
-    // 6. نظام الامتحان الإجباري قبل المحاضرة
     function openQuiz(quizId, targetLessonId) {
         const quizzes = JSON.parse(localStorage.getItem('platform_quizzes')) || DEFAULT_QUIZZES;
         const quiz = quizzes.find(q => q.id === quizId);
         const modalBody = document.getElementById('modalBody');
 
-        let html = `<h3>📝 ${quiz.title}</h3>
-                    <p style="color:var(--muted); margin-bottom:20px;">يجب الحصول على ${quiz.passScore}% على الأقل لفتح المحاضرة التالية.</p>`;
+        let html = `<h3 style="color:var(--secondary);">📝 ${quiz.title}</h3>
+                    <p style="color:var(--muted); margin-bottom:20px; font-size:0.9rem;">يجب الحصول على ${quiz.passScore}% على الأقل لفتح المحاضرة التالية.</p>`;
 
         quiz.questions.forEach((q, idx) => {
             html += `<div class="quiz-question">
@@ -429,7 +435,7 @@
             modalBody.innerHTML = `
                 <div style="text-align:center; padding: 30px;">
                     <h2 style="color:var(--success); margin-bottom:10px;">🎉 مبروك! نجحت في الامتحان</h2>
-                    <p style="font-size:1.2rem; margin-bottom:20px;">درجتك: <b>${scorePercent}%</b> (${correctCount} من ${quiz.questions.length})</p>
+                    <p style="font-size:1.1rem; margin-bottom:20px;">درجتك: <b>${scorePercent}%</b> (${correctCount} من ${quiz.questions.length})</p>
                     <button class="btn-primary" onclick="closeModal(); renderLessons();">فتح المحاضرة الآن</button>
                 </div>
             `;
@@ -449,7 +455,6 @@
         document.getElementById('modalBody').innerHTML = '';
     }
 
-    // تشغيل تلقائي لو مسجل دخول
     window.onload = function() {
         if (!localStorage.getItem('platform_codes')) {
             localStorage.setItem('platform_codes', JSON.stringify(DEFAULT_CODES));
