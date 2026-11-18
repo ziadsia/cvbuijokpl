@@ -19,7 +19,7 @@
             --warning: #d97706;
         }
         * { box-sizing: border-box; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; }
-        body { background-color: var(--bg); color: var(--text); line-height: 1.6; animation: fadeIn 0.5s ease-in-out; }
+        body { background-color: var(--bg); color: var(--text); line-height: 1.6; animation: fadeIn 0.4s ease-in-out; }
         
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -32,25 +32,30 @@
             display: flex; justify-content: space-between; align-items: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
-        .logo { font-size: 1.4rem; font-weight: 900; color: #38bdf8; letter-spacing: 0.5px; }
+        .logo { font-size: 1.4rem; font-weight: 900; color: #38bdf8; }
         .nav-info { display: flex; align-items: center; gap: 15px; font-size: 0.9rem; }
         .btn-logout {
             background: var(--danger); color: white; border: none; padding: 6px 14px;
             border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.2s;
         }
-        .btn-logout:hover { opacity: 0.9; transform: scale(1.05); }
+        .btn-logout:hover { opacity: 0.9; }
 
         /* Container */
         .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
 
-        /* Auth Box */
+        /* Auth Box (Login / Register Tabs) */
         .auth-box {
-            max-width: 420px; margin: 60px auto; background: var(--card);
-            padding: 35px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-            text-align: center; border: 1px solid #e2e8f0;
+            max-width: 440px; margin: 40px auto; background: var(--card);
+            padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
         }
-        .auth-box h2 { margin-bottom: 10px; color: var(--secondary); }
-        .auth-box p { color: var(--muted); font-size: 0.9rem; margin-bottom: 25px; }
+        .auth-tabs { display: flex; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; }
+        .tab-btn {
+            flex: 1; padding: 10px; background: none; border: none; font-size: 1rem;
+            font-weight: 700; cursor: pointer; color: var(--muted); transition: 0.2s;
+        }
+        .tab-btn.active { color: var(--primary); border-bottom: 3px solid var(--primary); margin-bottom: -2px; }
+        
         .form-group { margin-bottom: 15px; text-align: right; }
         .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; }
         .form-group input {
@@ -63,7 +68,7 @@
             padding: 12px; border-radius: 8px; font-size: 1rem; font-weight: 700;
             cursor: pointer; transition: 0.2s;
         }
-        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
+        .btn-primary:hover { background: var(--primary-dark); }
 
         /* Dashboard Header & Activation */
         .top-bar {
@@ -75,14 +80,13 @@
         .code-form { display: flex; gap: 10px; flex-wrap: wrap; }
         .code-form input {
             padding: 10px 15px; border: 2px solid #cbd5e1; border-radius: 8px;
-            font-size: 1rem; width: 220px; text-transform: uppercase; font-weight: bold; outline: none; transition: 0.2s;
+            font-size: 1rem; width: 220px; text-transform: uppercase; font-weight: bold; outline: none;
         }
-        .code-form input:focus { border-color: var(--success); }
         .btn-activate {
             background: var(--success); color: white; border: none; padding: 10px 20px;
             border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.2s;
         }
-        .btn-activate:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn-activate:hover { opacity: 0.9; }
 
         /* Lessons Grid */
         .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 20px; color: var(--secondary); }
@@ -95,7 +99,7 @@
             display: flex; flex-direction: column; justify-content: space-between;
             transition: all 0.3s ease;
         }
-        .lesson-card:hover { transform: translateY(-6px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+        .lesson-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
         .card-header { padding: 20px; background: linear-gradient(135deg, #1e293b, #334155); color: white; position: relative; }
         .badge {
             display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem;
@@ -107,20 +111,10 @@
         .card-body { padding: 20px; }
         .card-body p { color: var(--muted); font-size: 0.9rem; margin-bottom: 15px; }
         .card-footer { padding: 15px 20px; background: #f1f5f9; border-top: 1px solid #e2e8f0; }
-        .btn-watch {
-            width: 100%; padding: 11px; border: none; border-radius: 8px; font-weight: 700;
-            cursor: pointer; background: var(--primary); color: white; transition: 0.2s;
-        }
+        .btn-watch { width: 100%; padding: 11px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; background: var(--primary); color: white; transition: 0.2s; }
         .btn-watch:hover { background: var(--primary-dark); }
-        .btn-quiz {
-            width: 100%; padding: 11px; border: none; border-radius: 8px; font-weight: 700;
-            cursor: pointer; background: var(--warning); color: white; transition: 0.2s;
-        }
-        .btn-quiz:hover { opacity: 0.9; }
-        .btn-disabled {
-            width: 100%; padding: 11px; border: none; border-radius: 8px; font-weight: 700;
-            background: #cbd5e1; color: #475569; cursor: not-allowed;
-        }
+        .btn-quiz { width: 100%; padding: 11px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; background: var(--warning); color: white; }
+        .btn-disabled { width: 100%; padding: 11px; border: none; border-radius: 8px; font-weight: 700; background: #cbd5e1; color: #475569; cursor: not-allowed; }
 
         /* Modal */
         .modal {
@@ -130,25 +124,17 @@
         .modal-content {
             background: white; width: 100%; max-width: 750px; border-radius: 16px;
             padding: 25px; position: relative; max-height: 90vh; overflow-y: auto;
-            animation: scaleUp 0.3s ease-in-out;
-        }
-        @keyframes scaleUp {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
         }
         .close-modal {
             position: absolute; top: 15px; left: 20px; font-size: 1.5rem; cursor: pointer;
             background: #f1f5f9; width: 35px; height: 35px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; border: none; transition: 0.2s;
+            display: flex; align-items: center; justify-content: center; border: none;
         }
-        .close-modal:hover { background: #fee2e2; color: var(--danger); }
         .video-wrapper {
             position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
             border-radius: 12px; margin-top: 15px; background: #000;
         }
-        .video-wrapper iframe {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
-        }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
         .quiz-question { margin-bottom: 20px; padding: 15px; background: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0; }
         .quiz-question h4 { margin-bottom: 10px; }
         .quiz-option { display: block; margin-bottom: 8px; cursor: pointer; font-size: 0.95rem; }
@@ -169,31 +155,58 @@
     </div>
 </nav>
 
-<!-- شاشة تسجيل الدخول -->
+<!-- شاشة تسجيل الدخول / إنشاء حساب -->
 <div class="container" id="authSection">
     <div class="auth-box">
-        <h2>تسجيل دخول الطلاب</h2>
-        <p>الحساب مرتبط بجهاز واحد فقط لضمان أمان المحتوى</p>
+        <div class="auth-tabs">
+            <button class="tab-btn active" onclick="switchTab('login')">تسجيل الدخول</button>
+            <button class="tab-btn" onclick="switchTab('register')">حساب جديد</button>
+        </div>
+
         <div id="authAlert"></div>
-        <div class="form-group">
-            <label>اسم الطالب الثلاثي</label>
-            <input type="text" id="studentName" placeholder="مثال: أحمد محمد علي">
+
+        <!-- فورم تسجيل الدخول -->
+        <div id="loginForm">
+            <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 20px;">ادخل برقم هاتفك وكلمة المرور الخاصة بك</p>
+            <div class="form-group">
+                <label>رقم الهاتف</label>
+                <input type="tel" id="loginPhone" placeholder="010xxxxxxxx">
+            </div>
+            <div class="form-group">
+                <label>كلمة المرور</label>
+                <input type="password" id="loginPass" placeholder="••••••••">
+            </div>
+            <button class="btn-primary" onclick="login()">دخول للمنصة</button>
         </div>
-        <div class="form-group">
-            <label>رقم الهاتف (اسم المستخدم)</label>
-            <input type="tel" id="studentPhone" placeholder="010xxxxxxxx">
+
+        <!-- فورم إنشاء حساب جديد -->
+        <div id="registerForm" style="display: none;">
+            <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 20px;">أنشئ حساباً خاصاً بك (مرتبط بجهازك الثابت)</p>
+            <div class="form-group">
+                <label>اسم الطالب الثلاثي</label>
+                <input type="text" id="regName" placeholder="أحمد محمد علي">
+            </div>
+            <div class="form-group">
+                <label>رقم الهاتف</label>
+                <input type="tel" id="regPhone" placeholder="010xxxxxxxx">
+            </div>
+            <div class="form-group">
+                <label>كلمة المرور</label>
+                <input type="password" id="regPass" placeholder="اختر كلمة مرور قوية">
+            </div>
+            <button class="btn-primary" onclick="register()">إنشاء الحساب والدخول</button>
         </div>
-        <button class="btn-primary" onclick="login()">دخول للمنصة</button>
-        <p style="margin-top: 15px; font-size: 0.8rem; color: var(--muted);">* للدخول لوحة التحكم افتح ملف <b>admin.html</b></p>
+
+        <p style="margin-top: 20px; font-size: 0.8rem; text-align: center; color: var(--muted);">* لوحة تحكم المدرس: افتح <b>admin.html</b></p>
     </div>
 </div>
 
-<!-- شاشة الطالب والمحاضرات -->
+<!-- لوحة الطالب -->
 <div class="container" id="dashboardSection" style="display: none;">
     <div class="top-bar">
         <div>
             <h2 style="font-size: 1.3rem; color: var(--secondary);">أهلاً بك يا بطل 👋</h2>
-            <p style="color: var(--muted); font-size: 0.9rem;">معاك كود سنتر أو فودافون كاش؟ فعّله هنا لفتح المحاضرات المغلقة</p>
+            <p style="color: var(--muted); font-size: 0.9rem;">معاك كود سنتر أو فودافون كاش؟ فعّله هنا لفتح المحاضرات</p>
         </div>
         <div>
             <div class="code-form">
@@ -208,7 +221,7 @@
     <div class="lessons-grid" id="lessonsContainer"></div>
 </div>
 
-<!-- نافذة عرض الفيديو أو الامتحان -->
+<!-- Modal -->
 <div class="modal" id="contentModal">
     <div class="modal-content">
         <button class="close-modal" onclick="closeModal()">×</button>
@@ -218,6 +231,21 @@
 
 <script src="data.js"></script>
 <script>
+    function switchTab(tab) {
+        document.getElementById('authAlert').innerHTML = '';
+        if(tab === 'login') {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+            document.querySelectorAll('.tab-btn')[0].classList.add('active');
+            document.querySelectorAll('.tab-btn')[1].classList.remove('active');
+        } else {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            document.querySelectorAll('.tab-btn')[1].classList.add('active');
+            document.querySelectorAll('.tab-btn')[0].classList.remove('active');
+        }
+    }
+
     function getOrCreateDeviceId() {
         let devId = localStorage.getItem('platform_device_id');
         if (!devId) {
@@ -226,38 +254,63 @@
         }
         return devId;
     }
-
     const currentDeviceId = getOrCreateDeviceId();
 
-    function login() {
-        const name = document.getElementById('studentName').value.trim();
-        const phone = document.getElementById('studentPhone').value.trim();
+    function register() {
+        const name = document.getElementById('regName').value.trim();
+        const phone = document.getElementById('regPhone').value.trim();
+        const pass = document.getElementById('regPass').value.trim();
         const alertBox = document.getElementById('authAlert');
 
-        if (!name || !phone) {
-            alertBox.innerHTML = '<div class="alert alert-danger">يرجى إدخال الاسم ورقم الهاتف</div>';
+        if(!name || !phone || !pass) {
+            alertBox.innerHTML = '<div class="alert alert-danger">يرجى استكمال جميع البيانات</div>';
             return;
         }
 
         let users = JSON.parse(localStorage.getItem('platform_users')) || {};
+        if(users[phone]) {
+            alertBox.innerHTML = '<div class="alert alert-danger">رقم الهاتف هذا مسجل مسبقاً! قم بتسجيل الدخول</div>';
+            return;
+        }
 
-        if (users[phone]) {
-            if (users[phone].deviceId && users[phone].deviceId !== currentDeviceId) {
-                alertBox.innerHTML = `<div class="alert alert-danger">⛔ عفواً! هذا الحساب مسجل على جهاز آخر (${users[phone].deviceId}). تواصل مع الدعم الفني لفك القفل.</div>`;
-                return;
-            }
-            if (!users[phone].deviceId) {
-                users[phone].deviceId = currentDeviceId;
-                localStorage.setItem('platform_users', JSON.stringify(users));
-            }
-        } else {
-            users[phone] = {
-                name: name,
-                phone: phone,
-                deviceId: currentDeviceId,
-                unlockedLessons: [1],
-                passedQuizzes: []
-            };
+        users[phone] = {
+            name: name,
+            phone: phone,
+            pass: pass,
+            deviceId: currentDeviceId,
+            unlockedLessons: [1], // الحصة الأولى مفتوحة افتراضياً
+            passedQuizzes: []
+        };
+
+        localStorage.setItem('platform_users', JSON.stringify(users));
+        localStorage.setItem('current_student_phone', phone);
+        renderDashboard();
+    }
+
+    function login() {
+        const phone = document.getElementById('loginPhone').value.trim();
+        const pass = document.getElementById('loginPass').value.trim();
+        const alertBox = document.getElementById('authAlert');
+
+        let users = JSON.parse(localStorage.getItem('platform_users')) || {};
+
+        if(!users[phone]) {
+            alertBox.innerHTML = '<div class="alert alert-danger">رقم الهاتف غير مسجل! أنشئ حساباً جديداً</div>';
+            return;
+        }
+
+        if(users[phone].pass !== pass) {
+            alertBox.innerHTML = '<div class="alert alert-danger">كلمة المرور غير صحيحة</div>';
+            return;
+        }
+
+        // قفل الجهاز
+        if(users[phone].deviceId && users[phone].deviceId !== currentDeviceId) {
+            alertBox.innerHTML = `<div class="alert alert-danger">⛔ هذا الحساب مسجل على جهاز آخر (${users[phone].deviceId}). تواصل مع الدعم لفك الحظر.</div>`;
+            return;
+        }
+        if(!users[phone].deviceId) {
+            users[phone].deviceId = currentDeviceId;
             localStorage.setItem('platform_users', JSON.stringify(users));
         }
 
@@ -274,21 +327,19 @@
         const codeInput = document.getElementById('voucherInput').value.trim().toUpperCase();
         const alertBox = document.getElementById('codeAlert');
         const phone = localStorage.getItem('current_student_phone');
-
-        if (!codeInput) return;
+        if(!codeInput) return;
 
         let codes = JSON.parse(localStorage.getItem('platform_codes')) || DEFAULT_CODES;
         let users = JSON.parse(localStorage.getItem('platform_users')) || {};
         let user = users[phone];
 
         const foundCode = codes.find(c => c.code === codeInput);
-
-        if (!foundCode) {
+        if(!foundCode) {
             alertBox.innerHTML = '<span style="color:var(--danger); font-size:0.85rem; font-weight:bold;">❌ الكود غير صحيح!</span>';
             return;
         }
-        if (foundCode.used) {
-            alertBox.innerHTML = '<span style="color:var(--danger); font-size:0.85rem; font-weight:bold;">⚠️ هذا الكود تم استخدامه من قبل!</span>';
+        if(foundCode.used) {
+            alertBox.innerHTML = '<span style="color:var(--danger); font-size:0.85rem; font-weight:bold;">⚠️ الكود مستخدم من قبل!</span>';
             return;
         }
 
@@ -296,10 +347,8 @@
         foundCode.usedBy = phone;
         localStorage.setItem('platform_codes', JSON.stringify(codes));
 
-        foundCode.unlocks.forEach(lessonId => {
-            if (!user.unlockedLessons.includes(lessonId)) {
-                user.unlockedLessons.push(lessonId);
-            }
+        foundCode.unlocks.forEach(id => {
+            if(!user.unlockedLessons.includes(id)) user.unlockedLessons.push(id);
         });
         users[phone] = user;
         localStorage.setItem('platform_users', JSON.stringify(users));
@@ -311,154 +360,129 @@
 
     function renderDashboard() {
         const phone = localStorage.getItem('current_student_phone');
-        if (!phone) return;
-
-        const users = JSON.parse(localStorage.getItem('platform_users')) || {};
-        const user = users[phone];
-        if (!user) { logout(); return; }
+        if(!phone) return;
+        let users = JSON.parse(localStorage.getItem('platform_users')) || {};
+        let user = users[phone];
+        if(!user) { logout(); return; }
 
         document.getElementById('authSection').style.display = 'none';
         document.getElementById('dashboardSection').style.display = 'block';
         document.getElementById('navInfo').style.display = 'flex';
         document.getElementById('studentNameDisplay').innerText = `الطالب: ${user.name}`;
-        document.getElementById('deviceIdDisplay').innerText = `معرف جهازك: ${currentDeviceId}`;
+        document.getElementById('deviceIdDisplay').innerText = `الجهاز: ${currentDeviceId}`;
 
         renderLessons();
     }
 
     function renderLessons() {
         const phone = localStorage.getItem('current_student_phone');
-        const users = JSON.parse(localStorage.getItem('platform_users')) || {};
-        const user = users[phone];
-        const lessons = JSON.parse(localStorage.getItem('platform_lessons')) || DEFAULT_LESSONS;
+        let users = JSON.parse(localStorage.getItem('platform_users')) || {};
+        let user = users[phone];
+        let lessons = JSON.parse(localStorage.getItem('platform_lessons')) || DEFAULT_LESSONS;
         const container = document.getElementById('lessonsContainer');
         container.innerHTML = '';
 
+        if(lessons.length === 0) {
+            container.innerHTML = '<p style="color:var(--muted);">لا توجد محاضرات مضافة حتى الآن من المدرس.</p>';
+            return;
+        }
+
         lessons.forEach(lesson => {
-            const isPaidUnlocked = lesson.isFree || user.unlockedLessons.includes(lesson.id);
+            const isUnlocked = lesson.isFree || user.unlockedLessons.includes(lesson.id);
             const isQuizPassed = !lesson.requiredQuizId || user.passedQuizzes.includes(lesson.requiredQuizId);
 
-            let badgeHtml = '';
-            let buttonHtml = '';
-
-            if (!isPaidUnlocked) {
-                badgeHtml = '<span class="badge badge-paid">🔒 محتوى مدفوع (يتطلب كود)</span>';
-                buttonHtml = `<button class="btn-disabled" onclick="alert('يرجى إدخال كود التفعيل في الأعلى لفتح هذه المحاضرة')">مغلق - أدخل الكود أولاً</button>`;
-            } else if (!isQuizPassed) {
-                badgeHtml = '<span class="badge badge-locked">📝 يتطلب اجتياز امتحان سابق</span>';
-                buttonHtml = `<button class="btn-quiz" onclick="openQuiz(${lesson.requiredQuizId}, ${lesson.id})">ابدأ الامتحان لفتح المحاضرة</button>`;
+            let badge = '', btn = '';
+            if(!isUnlocked) {
+                badge = '<span class="badge badge-paid">🔒 مدفوع (يتطلب كود)</span>';
+                btn = `<button class="btn-disabled" onclick="alert('أدخل كود التفعيل في الأعلى لفتح المحاضرة')">مغلق - أدخل الكود</button>`;
+            } else if(!isQuizPassed) {
+                badge = '<span class="badge badge-locked">📝 يتطلب امتحان سابق</span>';
+                btn = `<button class="btn-quiz" onclick="openQuiz(${lesson.requiredQuizId}, ${lesson.id})">ابدأ الامتحان لفتح المحاضرة</button>`;
             } else {
-                badgeHtml = lesson.isFree ? '<span class="badge badge-free">مجاني</span>' : '<span class="badge badge-free">✅ مُفعّل بنجاح</span>';
-                buttonHtml = `<button class="btn-watch" onclick="watchLesson(${lesson.id})">▶️ مشاهدة المحاضرة الآن</button>`;
+                badge = lesson.isFree ? '<span class="badge badge-free">مجاني</span>' : '<span class="badge badge-free">✅ مُفعّل</span>';
+                btn = `<button class="btn-watch" onclick="watchLesson(${lesson.id})">▶️ مشاهدة الحصة</button>`;
             }
 
             container.innerHTML += `
                 <div class="lesson-card">
                     <div>
-                        <div class="card-header">
-                            ${badgeHtml}
-                            <h3 style="margin-top: 5px;">${lesson.title}</h3>
-                        </div>
-                        <div class="card-body">
-                            <p>${lesson.description}</p>
-                        </div>
+                        <div class="card-header">${badge}<h3 style="margin-top:5px;">${lesson.title}</h3></div>
+                        <div class="card-body"><p>${lesson.description}</p></div>
                     </div>
-                    <div class="card-footer">
-                        ${buttonHtml}
-                    </div>
+                    <div class="card-footer">${btn}</div>
                 </div>
             `;
         });
     }
 
-    function watchLesson(lessonId) {
-        const lessons = JSON.parse(localStorage.getItem('platform_lessons')) || DEFAULT_LESSONS;
-        const lesson = lessons.find(l => l.id === lessonId);
-        const modalBody = document.getElementById('modalBody');
+    function watchLesson(id) {
+        let lessons = JSON.parse(localStorage.getItem('platform_lessons')) || DEFAULT_LESSONS;
+        let lesson = lessons.find(l => l.id === id);
+        // تحويل رابط يوتيوب العادي إلى Embed لو المدرس دخله عادي
+        let embedUrl = lesson.videoUrl;
+        if(embedUrl.includes("watch?v=")) {
+            embedUrl = embedUrl.replace("watch?v=", "embed/");
+        } else if(embedUrl.includes("youtu.be/")) {
+            embedUrl = embedUrl.replace("youtu.be/", "www.youtube.com/embed/");
+        }
 
-        modalBody.innerHTML = `
-            <h3 style="color:var(--secondary);">${lesson.title}</h3>
+        document.getElementById('modalBody').innerHTML = `
+            <h3>${lesson.title}</h3>
             <p style="color:var(--muted); margin-bottom:10px; font-size:0.9rem;">${lesson.description}</p>
-            <div class="video-wrapper">
-                <iframe src="${lesson.videoUrl}" allowfullscreen></iframe>
-            </div>
+            <div class="video-wrapper"><iframe src="${embedUrl}" allowfullscreen></iframe></div>
         `;
         document.getElementById('contentModal').style.display = 'flex';
     }
 
-    function openQuiz(quizId, targetLessonId) {
-        const quizzes = JSON.parse(localStorage.getItem('platform_quizzes')) || DEFAULT_QUIZZES;
-        const quiz = quizzes.find(q => q.id === quizId);
-        const modalBody = document.getElementById('modalBody');
+    function openQuiz(quizId) {
+        let quizzes = JSON.parse(localStorage.getItem('platform_quizzes')) || DEFAULT_QUIZZES;
+        let quiz = quizzes.find(q => q.id == quizId);
+        if(!quiz) { alert('هذا الامتحان غير متوفر حالياً'); return; }
 
-        let html = `<h3 style="color:var(--secondary);">📝 ${quiz.title}</h3>
-                    <p style="color:var(--muted); margin-bottom:20px; font-size:0.9rem;">يجب الحصول على ${quiz.passScore}% على الأقل لفتح المحاضرة التالية.</p>`;
-
+        let html = `<h3>📝 ${quiz.title}</h3><p style="color:var(--muted); margin-bottom:20px;">درجة النجاح المطلوبة: ${quiz.passScore}%</p>`;
         quiz.questions.forEach((q, idx) => {
-            html += `<div class="quiz-question">
-                        <h4>${idx + 1}. ${q.q}</h4>`;
+            html += `<div class="quiz-question"><h4>${idx+1}. ${q.q}</h4>`;
             q.options.forEach((opt, optIdx) => {
-                html += `<label class="quiz-option">
-                            <input type="radio" name="q_${idx}" value="${optIdx}"> ${opt}
-                         </label>`;
+                html += `<label class="quiz-option"><input type="radio" name="q_${idx}" value="${optIdx}"> ${opt}</label>`;
             });
             html += `</div>`;
         });
-
-        html += `<button class="btn-primary" onclick="submitQuiz(${quiz.id})">تسليم الإجابات وعرض النتيجة</button>`;
-        modalBody.innerHTML = html;
+        html += `<button class="btn-primary" onclick="submitQuiz(${quiz.id})">تسليم الامتحان</button>`;
+        document.getElementById('modalBody').innerHTML = html;
         document.getElementById('contentModal').style.display = 'flex';
     }
 
     function submitQuiz(quizId) {
-        const quizzes = JSON.parse(localStorage.getItem('platform_quizzes')) || DEFAULT_QUIZZES;
-        const quiz = quizzes.find(q => q.id === quizId);
-        let correctCount = 0;
-
+        let quizzes = JSON.parse(localStorage.getItem('platform_quizzes')) || DEFAULT_QUIZZES;
+        let quiz = quizzes.find(q => q.id == quizId);
+        let correct = 0;
         quiz.questions.forEach((q, idx) => {
-            const selected = document.querySelector(`input[name="q_${idx}"]:checked`);
-            if (selected && parseInt(selected.value) === q.answer) {
-                correctCount++;
-            }
+            let sel = document.querySelector(`input[name="q_${idx}"]:checked`);
+            if(sel && parseInt(sel.value) === q.answer) correct++;
         });
 
-        const scorePercent = Math.round((correctCount / quiz.questions.length) * 100);
-        const modalBody = document.getElementById('modalBody');
+        let percent = Math.round((correct / quiz.questions.length) * 100);
+        let modal = document.getElementById('modalBody');
 
-        if (scorePercent >= quiz.passScore) {
-            const phone = localStorage.getItem('current_student_phone');
+        if(percent >= quiz.passScore) {
+            let phone = localStorage.getItem('current_student_phone');
             let users = JSON.parse(localStorage.getItem('platform_users')) || {};
-            if (!users[phone].passedQuizzes.includes(quizId)) {
+            if(!users[phone].passedQuizzes.includes(quizId)) {
                 users[phone].passedQuizzes.push(quizId);
                 localStorage.setItem('platform_users', JSON.stringify(users));
             }
-            modalBody.innerHTML = `
-                <div style="text-align:center; padding: 30px;">
-                    <h2 style="color:var(--success); margin-bottom:10px;">🎉 مبروك! نجحت في الامتحان</h2>
-                    <p style="font-size:1.1rem; margin-bottom:20px;">درجتك: <b>${scorePercent}%</b> (${correctCount} من ${quiz.questions.length})</p>
-                    <button class="btn-primary" onclick="closeModal(); renderLessons();">فتح المحاضرة الآن</button>
-                </div>
-            `;
+            modal.innerHTML = `<div style="text-align:center; padding:20px;"><h2 style="color:var(--success);">🎉 مبروك نجحت!</h2><p>درجتك: ${percent}%</p><button class="btn-primary" onclick="closeModal(); renderLessons();">فتح المحاضرة</button></div>`;
         } else {
-            modalBody.innerHTML = `
-                <div style="text-align:center; padding: 30px;">
-                    <h2 style="color:var(--danger); margin-bottom:10px;">❌ للأسف لم تجتز الامتحان</h2>
-                    <p style="font-size:1.1rem; margin-bottom:20px;">درجتك: <b>${scorePercent}%</b> (المطلوب ${quiz.passScore}%)</p>
-                    <button class="btn-quiz" onclick="openQuiz(${quizId})">إعادة المحاولة</button>
-                </div>
-            `;
+            modal.innerHTML = `<div style="text-align:center; padding:20px;"><h2 style="color:var(--danger);">❌ لم تجتز الامتحان</h2><p>درجتك: ${percent}% (المطلوب ${quiz.passScore}%)</p><button class="btn-quiz" onclick="openQuiz(${quizId})">إعادة المحاولة</button></div>`;
         }
     }
 
-    function closeModal() {
-        document.getElementById('contentModal').style.display = 'none';
-        document.getElementById('modalBody').innerHTML = '';
-    }
+    function closeModal() { document.getElementById('contentModal').style.display = 'none'; }
 
     window.onload = function() {
-        if (!localStorage.getItem('platform_codes')) {
-            localStorage.setItem('platform_codes', JSON.stringify(DEFAULT_CODES));
-        }
+        if(!localStorage.getItem('platform_codes')) localStorage.setItem('platform_codes', JSON.stringify(DEFAULT_CODES));
+        if(!localStorage.getItem('platform_lessons')) localStorage.setItem('platform_lessons', JSON.stringify(DEFAULT_LESSONS));
+        if(!localStorage.getItem('platform_quizzes')) localStorage.setItem('platform_quizzes', JSON.stringify(DEFAULT_QUIZZES));
         renderDashboard();
     };
 </script>
